@@ -44,7 +44,7 @@ const Home = () => {
             </h1>
 
             <p className="text-lg leading-relaxed text-gray-600 transition-all duration-300">
-              I craft modern web applications and robust backends as a versatile full-stack developer, blending React, Laravel, and Node.js expertise to deliver solutions that are fast, scalable, and engaging. My focus is on creating seamless user experiences while balancing performance, security, and cutting-edge technology — exploring new ideas and pushing the boundaries of full-stack development.
+              I craft modern web applications and robust backends as a versatile full-stack developer, blending React, Laravel, and Node.js expertise to deliver solutions that are fast, scalable, and engaging. My focus is on creating seamless user experiences while balancing performance, security, and cutting-edge technology - exploring new ideas and pushing the boundaries of full-stack development.
             </p>
 
             {/* Social Icons */}
