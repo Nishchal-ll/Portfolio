@@ -11,14 +11,18 @@ const Home = () => {
 
   return (
     <>
-    <Helmet>
-        {/* Primary SEO */}
-        <title>Nishchal Acharya | Fullstack Developer</title>
-        <meta
-          name="description"
-          content="Portfolio of Nishchal Acharya - Fullstack Developer skilled in React, JavaScript, Node.js, PHP, Laravel, and Tailwind CSS."
-        />
-        </Helmet>
+     <Helmet>
+      <title>Nishchal Acharya | Fullstack Developer</title>
+      <meta
+        name="description"
+        content="Welcome to the portfolio of Nishchal Acharya — a passionate Fullstack Developer skilled in React, Node.js, Laravel, and modern web technologies. Explore my work, skills, and experience in web development."
+      />
+      <meta
+        name="keywords"
+        content="Nishchal Acharya, Fullstack Developer, React Developer, Laravel Developer, Web Developer Nepal, JavaScript, Node.js, Portfolio"
+      />
+      <meta name="author" content="Nishchal Acharya" />
+    </Helmet>
     <div className="min-h-screen bg-white transition-all duration-500">
       {/* Home Page Content */}
       <div className="container mx-auto px-4 py-16 min-h-screen flex items-center pt-32">
@@ -35,6 +39,7 @@ const Home = () => {
   <img
     src="./me1.png"
     alt="Nishchal Acharya"
+     loading="lazy"
     className="w-full h-auto max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl mx-auto object-contain"
   />
 </div>

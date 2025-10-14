@@ -1,5 +1,6 @@
 import React from "react";
 import { Github } from "lucide-react";
+import { Helmet } from "react-helmet";
 
 const Projects = () => {
   const projects = [
@@ -38,6 +39,18 @@ const Projects = () => {
   ];
 
   return (
+    <>
+       <Helmet>
+      <title>Projects | Nishchal Acharya</title>
+      <meta
+        name="description"
+        content="Browse the latest web projects by Nishchal Acharya — featuring fullstack applications built using React, Node.js, and Laravel. Discover creative, efficient, and high-performing web solutions."
+      />
+      <meta
+        name="keywords"
+        content="Nishchal Acharya projects, React projects, Laravel projects, Node.js projects, Fullstack web apps, Portfolio projects, Web development"
+      />
+    </Helmet>
     <div className="min-h-screen bg-white transition-all duration-500">
       {/* Projects Grid */}
       <div className="container mx-auto px-4 py-32 mt-16">
@@ -102,6 +115,7 @@ const Projects = () => {
         }
       `}</style>
     </div>
+    </>
   );
 };
 

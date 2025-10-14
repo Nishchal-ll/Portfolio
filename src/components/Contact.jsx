@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Github, Linkedin, Instagram, Mail } from "lucide-react";
+import { Helmet } from "react-helmet";
 
 const Contact = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -15,6 +16,18 @@ const Contact = () => {
   ];
 
   return (
+    <>
+     <Helmet>
+      <title>Contact | Nishchal Acharya</title>
+      <meta
+        name="description"
+        content="Get in touch with Nishchal Acharya — Fullstack Developer available for freelance, collaboration, or full-time opportunities. Reach out via email or social media."
+      />
+      <meta
+        name="keywords"
+        content="Contact Nishchal Acharya, hire Fullstack Developer, freelance developer Nepal, React developer contact, Laravel developer"
+      />
+    </Helmet>
     <div className="min-h-screen bg-white font-poppins flex items-center justify-center transition-all duration-500">
       {/* Contact Content */}
       <div className="container mx-auto px-4 py-16 text-center max-w-3xl">
@@ -76,6 +89,7 @@ const Contact = () => {
         }
       `}</style>
     </div>
+    </>
   );
 };
 
