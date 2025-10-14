@@ -8,7 +8,7 @@ const Projects = () => {
       id: 1,
       title: "Minimotors E-Commerce Platform",
       description:
-        "A full-stack e-commerce platform built with React, Laravel, and SQL, featuring seamless PayPal payment integration, user authentication, and an admin dashboard.",
+        "A full-stack e-commerce platform built with React, Laravel, and SQL, featuring seamless Khalti payment integration, user authentication, and an admin dashboard.",
       technologies: ["React", "Laravel", "SQL", "Khalti"],
       githubLink: "https://github.com/Nishchal-ll/Full-Stack-Project",
     },
