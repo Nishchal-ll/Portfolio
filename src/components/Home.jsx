@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Github, Instagram, Linkedin } from "lucide-react";
+import { Helmet } from "react-helmet";
 
 const Home = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -9,6 +10,15 @@ const Home = () => {
   }, []);
 
   return (
+    <>
+    <Helmet>
+        {/* Primary SEO */}
+        <title>Nishchal Acharya | Fullstack Developer</title>
+        <meta
+          name="description"
+          content="Portfolio of Nishchal Acharya - Fullstack Developer skilled in React, JavaScript, Node.js, PHP, Laravel, and Tailwind CSS."
+        />
+        </Helmet>
     <div className="min-h-screen bg-white transition-all duration-500">
       {/* Home Page Content */}
       <div className="container mx-auto px-4 py-16 min-h-screen flex items-center pt-32">
@@ -79,6 +89,7 @@ const Home = () => {
         }
       `}</style>
     </div>
+    </>
   );
 };
 
