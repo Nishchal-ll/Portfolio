@@ -23,7 +23,7 @@ const Projects = () => {
     {
   
   id: 3,
-      title: "Gorkha Ride - Super App Website",
+      title: "Super App Website",
       description:
         "Company website for Gorkha Ride built with React on the frontend and Node.js/Express on the backend, providing seamless user experience and ride management features.",
       technologies: ["React", "Node.js", "Express"],
