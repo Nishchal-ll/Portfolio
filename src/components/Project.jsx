@@ -13,20 +13,21 @@ const Projects = () => {
       githubLink: "https://github.com/Nishchal-ll/Full-Stack-Project",
     },
     {
-      id: 2,
-      title: "Gorkha Ride - Super App Website",
-      description:
-        "Company website for Gorkha Ride built with React on the frontend and Node.js/Express on the backend, providing seamless user experience and ride management features.",
-      technologies: ["React", "Node.js", "Express"],
-      githubLink: "https://github.com/Nishchal-ll",
-    },
-    {
-     id: 3,
+        id: 2,
   title: "Student Management System",
   description:
     "A Core Java project demonstrating complete object-oriented programming concepts through a console-based bank system. It includes account management, transactions, inheritance, exception handling, file handling, and collections to simulate real banking operations.",
   technologies: ["Java", "OOP", "Collections"],
   githubLink: "https://github.com/Nishchal-ll/Student-Management-System",
+    },
+    {
+  
+  id: 3,
+      title: "Gorkha Ride - Super App Website",
+      description:
+        "Company website for Gorkha Ride built with React on the frontend and Node.js/Express on the backend, providing seamless user experience and ride management features.",
+      technologies: ["React", "Node.js", "Express"],
+      githubLink: "https://github.com/Nishchal-ll",
     },
     {
       id: 4,
