@@ -17,7 +17,7 @@ const Projects = () => {
   title: "Student Management System",
   description:
     "A Core Java project demonstrating complete object-oriented programming concepts through a console-based bank system. It includes account management, transactions, inheritance, exception handling, file handling, and collections to simulate real banking operations.",
-  technologies: ["Java", "OOP", "Collections"],
+  technologies: ["Java", "OOP", "Arrays"],
   githubLink: "https://github.com/Nishchal-ll/Student-Management-System",
     },
     {
