@@ -21,12 +21,12 @@ const Projects = () => {
       githubLink: "https://github.com/Nishchal-ll",
     },
     {
-      id: 3,
-      title: "Portfolio Website",
-      description:
-        "A personal portfolio built in React to showcase projects, skills, and professional experience with responsive design and modern UI.",
-      technologies: ["React", "Tailwind CSS", "Framer Motion"],
-      githubLink: "https://github.com/Nishchal-ll/Portfolio",
+     id: 3,
+  title: "Student Management System",
+  description:
+    "A Core Java project demonstrating complete object-oriented programming concepts through a console-based bank system. It includes account management, transactions, inheritance, exception handling, file handling, and collections to simulate real banking operations.",
+  technologies: ["Java", "OOP", "Collections"],
+  githubLink: "https://github.com/Nishchal-ll/Student-Management-System",
     },
     {
       id: 4,
