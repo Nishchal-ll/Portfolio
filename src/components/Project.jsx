@@ -4,39 +4,54 @@ import { Helmet } from "react-helmet";
 
 const Projects = () => {
   const projects = [
-    {
-      id: 1,
-      title: "Minimotors E-Commerce Platform",
-      description:
-        "A full-stack e-commerce platform built with React, Laravel, and SQL, featuring seamless Khalti payment integration, user authentication, and an admin dashboard.",
-      technologies: ["React", "Laravel", "SQL", "Khalti"],
-      githubLink: "https://github.com/Nishchal-ll/Full-Stack-Project",
-    },
-    {
-        id: 2,
-  title: "Student Management System",
+   {
+  id: 1,
+  title: "Morse Code Generator-Swing",
   description:
-    "A Core Java project demonstrating complete object-oriented programming concepts through a console-based bank system. It includes account management, transactions, inheritance, exception handling, file handling, and collections to simulate real banking operations.",
-  technologies: ["Java", "OOP", "Arrays"],
-  githubLink: "https://github.com/Nishchal-ll/Student-Management-System",
-    },
-    {
-  
+    "A Java Swing application that converts text into Morse code, supporting letters A-Z, numbers 0-9, and spaces with a simple GUI interface.",
+  technologies: ["Java", "Swing", "HashMap"],
+  githubLink: "https://github.com/Nishchal-ll/MorseCodeGenerator-Swing",
+},
+{
+  id: 2,
+  title: "JDBC Java Project",
+  description:
+    "A Java project demonstrating database connectivity using JDBC, allowing CRUD operations on a relational database through console input.",
+  technologies: ["Java", "JDBC", "SQL"],
+  githubLink: "https://github.com/Nishchal-ll/JDBC-Java.git",
+},
+{
   id: 3,
-      title: "Super App Website",
-      description:
-        "Company website for Gorkha Ride built with React on the frontend and Node.js/Express on the backend, providing seamless user experience and ride management features.",
-      technologies: ["React", "Node.js", "Express"],
-      githubLink: "https://github.com/Nishchal-ll",
-    },
-    {
-      id: 4,
-      title: "PHP CRUD Application",
-      description:
-        "A simple CRUD application developed using vanilla PHP and MySQL, demonstrating basic database operations and web functionality.",
-      technologies: ["PHP", "MySQL", "HTML", "CSS"],
-      githubLink: "https://github.com/Nishchal-ll/PHP-Crud",
-    },
+  title: "Car Rental Management System",
+  description:
+    "A console-based Java application to manage student information, including adding, updating, deleting, and viewing student records.",
+  technologies: ["Java", "Console Application", "File Handling"],
+  githubLink: "https://github.com/Nishchal-ll/CarRentalManagementSystem-CoreJava.git",
+},
+{
+  id: 4,
+  title: "MiniMotors E-commerce",
+  description:
+    "A full-stack e-commerce platform for Hot Wheels cars built with React and Laravel, featuring product browsing, cart functionality, Stripe checkout, and an admin dashboard.",
+  technologies: ["React", "Laravel", "Khalti", "SQL"],
+  githubLink: "https://github.com/Nishchal-ll/Minimotors-FullStack-Project.git",
+},
+{
+  id: 5,
+  title: "Super App Website - Gorkha Ride",
+  description:
+    "A responsive website for the Gorkha Ride app, built to promote the platform and its services, featuring a modern UI and engaging content for riders, service providers, and restaurants.",
+  technologies: ["HTML", "CSS", "JavaScript", "Responsive Design"],
+  githubLink: "https://github.com/Nishchal-ll/GorkhaRide-Website.git",
+},
+{
+  id: 6,
+  title: "PHP CRUD Application",
+  description:
+    "A simple PHP application implementing CRUD operations (Create, Read, Update, Delete) for managing records in a MySQL database.",
+  technologies: ["PHP", "MySQL", "HTML", "CSS"],
+  githubLink: "https://github.com/Nishchal-ll/PHP-Crud.git",
+}
   ];
 
   return (
