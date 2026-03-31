@@ -1,8 +1,7 @@
 type Contact struct {
-	ID          uint   `json:"id"`
-	Title       string `json:"title"`
-	Description string `json:"description"`
-	Email       string `json:"email"`
-	Github      string `json:"github"`
-	Linkedin    string `json:"linkedin"`
+	ID        uint   `json:"id"`
+	Email     string `json:"email"`
+	Github    string `json:"github"`
+	LinkedIn  string `json:"linkedin"`
+	Instagram string `json:"instagram"`
 }

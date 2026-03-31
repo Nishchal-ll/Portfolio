@@ -1,7 +1,7 @@
 type Project struct {
-	ID          uint   `json:"id"`
-	Title       string `json:"title"`
-	Description string `json:"description"`
-	TechStack   string `json:"tech_stack"`
-	Github      string `json:"github"`
+	ID           uint     `json:"id"`
+	Title        string   `json:"title"`
+	Description  string   `json:"description"`
+	Technologies []string `json:"technologies"`
+	GithubLink   string   `json:"githubLink"`
 }
