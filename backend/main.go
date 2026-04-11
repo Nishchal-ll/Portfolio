@@ -22,8 +22,9 @@ func main() {
 
 	// CORS Middleware
 	app.Use(cors.New(cors.Config{
-		AllowOrigins: "http://localhost:5173, http://localhost:3000",
-		AllowMethods: "GET,POST,PUT,DELETE,OPTIONS",
+		AllowOrigins:     "http://localhost:5173, http://localhost:3000, http://localhost:8080",
+		AllowMethods:     "GET,POST,PUT,DELETE,OPTIONS",
+		AllowCredentials: true,
 	}))
 
 	// Health check endpoint
@@ -33,6 +34,9 @@ func main() {
 
 	// Login page
 	app.Get("/login", controllers.ShowLoginPage)
+
+	// Protected dashboard page
+	app.Get("/dashboard", middleware.SessionMiddleware, controllers.ShowDashboardPage)
 
 	// Public Auth Routes (no session required)
 	SetupAuthRoutes(app)
