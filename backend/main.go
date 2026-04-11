@@ -2,6 +2,7 @@ package main
 
 import (
 	"backend/controllers"
+	"backend/database"
 	"backend/middleware"
 	"fmt"
 	"log"
@@ -15,6 +16,12 @@ import (
 func main() {
 	// Load .env file
 	_ = godotenv.Load()
+
+	// Initialize database
+	if err := database.Init(); err != nil {
+		log.Fatalf("Failed to initialize database: %v", err)
+	}
+	defer database.Close()
 
 	app := fiber.New(fiber.Config{
 		AppName: "Portfolio Admin Dashboard",

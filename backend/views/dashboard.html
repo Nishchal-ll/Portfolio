@@ -5,177 +5,279 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Admin Dashboard - Portfolio</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            margin: 0;
-            font-family: 'Poppins', system-ui, sans-serif;
-            background: #f4f6fb;
-            color: #1f2937;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+            background: #f8fafb;
+            color: #333;
+            line-height: 1.6;
         }
-        .page {
-            max-width: 1100px;
+
+        .container {
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 32px 24px;
-        }
-        .header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 16px;
-            flex-wrap: wrap;
-        }
-        .header h1 {
-            margin: 0;
-            font-size: 2rem;
-        }
-        .header p {
-            margin: 8px 0 0;
-            color: #4b5563;
-        }
-        .button {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: #fff;
-            border: none;
-            border-radius: 999px;
-            padding: 12px 20px;
-            cursor: pointer;
-            font-size: 0.95rem;
-            transition: transform 0.2s ease;
-        }
-        .button:hover {
-            transform: translateY(-1px);
-        }
-        .grid {
-            display: grid;
-            gap: 24px;
-            margin-top: 32px;
-        }
-        .card {
-            background: #fff;
-            border-radius: 20px;
-            box-shadow: 0 18px 60px rgba(15, 23, 42, 0.08);
             padding: 24px;
         }
-        .card h2 {
-            margin-top: 0;
-            margin-bottom: 16px;
-            font-size: 1.25rem;
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 32px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid #e0e0e0;
         }
-        .card p {
-            margin: 0;
-            color: #4b5563;
-            line-height: 1.75;
-        }
-        .grid-2 {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
-        }
-        .item {
-            border: 1px solid #e5e7eb;
-            border-radius: 16px;
-            padding: 18px;
-            background: #fcfcfd;
-        }
-        .item h3 {
-            margin: 0 0 8px;
-            font-size: 1rem;
-        }
-        .item small {
-            color: #6b7280;
-        }
-        .item a {
-            color: #4f46e5;
-            text-decoration: none;
+
+        .header h1 {
+            font-size: 28px;
             font-weight: 600;
         }
-        .summary {
+
+        .header p {
+            font-size: 14px;
+            color: #666;
+            margin-top: 4px;
+        }
+
+        .logout-btn {
+            background: #e53e3e;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: background 0.2s;
+        }
+
+        .logout-btn:hover {
+            background: #c53030;
+        }
+
+        .stats {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 18px;
-            margin-top: 24px;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-bottom: 32px;
         }
-        .summary-card {
-            padding: 18px;
-            border-radius: 16px;
-            background: linear-gradient(135deg, #eef2ff 0%, #ffffff 100%);
-            border: 1px solid #e5e7eb;
+
+        .stat-box {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
         }
-        .summary-card strong {
+
+        .stat-box strong {
             display: block;
-            font-size: 2rem;
+            font-size: 32px;
+            color: #2563eb;
             margin-bottom: 8px;
         }
+
+        .stat-box p {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .sections {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-bottom: 24px;
+        }
+
+        .section {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 20px;
+        }
+
+        .section h2 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .info-item {
+            margin-bottom: 12px;
+            padding: 10px 0;
+            border-bottom: 1px solid #f5f5f5;
+        }
+
+        .info-item:last-child {
+            border-bottom: none;
+        }
+
+        .info-label {
+            font-size: 12px;
+            color: #999;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+        }
+
+        .info-value {
+            font-size: 14px;
+            color: #333;
+            word-break: break-all;
+        }
+
+        .info-value a {
+            color: #2563eb;
+            text-decoration: none;
+        }
+
+        .info-value a:hover {
+            text-decoration: underline;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 16px;
+            margin-top: 16px;
+        }
+
+        .item-card {
+            background: #f8fafb;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 16px;
+        }
+
+        .item-card h3 {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        .item-card p {
+            font-size: 12px;
+            color: #666;
+            line-height: 1.5;
+            margin-bottom: 8px;
+        }
+
+        .item-card small {
+            display: block;
+            font-size: 11px;
+            color: #999;
+            margin-top: 8px;
+            padding-top: 8px;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .loading {
+            color: #999;
+            font-size: 14px;
+            text-align: center;
+            padding: 24px;
+        }
+
+        .empty-message {
+            color: #999;
+            font-size: 14px;
+            text-align: center;
+            padding: 24px;
+            background: #f8fafb;
+            border-radius: 6px;
+            border: 1px dashed #e0e0e0;
+        }
+
         .alert {
             display: none;
-            margin-top: 24px;
-            padding: 14px 18px;
-            border-radius: 14px;
             background: #fee2e2;
-            color: #991b1b;
-            border: 1px solid #fecaca;
+            color: #c53030;
+            padding: 12px 16px;
+            border-radius: 6px;
+            margin-bottom: 16px;
+            border: 1px solid #fc8181;
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .sections {
+                grid-template-columns: 1fr;
+            }
+
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 16px;
+            }
+
+            .logout-btn {
+                align-self: flex-end;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="page">
+    <div class="container">
         <div class="header">
             <div>
-                <h1>Portfolio Admin Dashboard</h1>
-                <p>Manage projects, home content, gallery assets, and contact info from a single page.</p>
+                <h1>Dashboard</h1>
+                <p>Manage your portfolio content</p>
             </div>
-            <button class="button" id="logoutBtn">Logout</button>
+            <button class="logout-btn" id="logoutBtn">Logout</button>
         </div>
 
         <div class="alert" id="alert"></div>
 
-        <div class="summary" id="summary">
-            <div class="summary-card">
+        <div class="stats">
+            <div class="stat-box">
                 <strong id="projectCount">0</strong>
-                <p>Projects available</p>
+                <p>Projects</p>
             </div>
-            <div class="summary-card">
+            <div class="stat-box">
                 <strong id="galleryCount">0</strong>
-                <p>Gallery items</p>
+                <p>Gallery Items</p>
             </div>
-            <div class="summary-card">
-                <strong id="contactEmail">-</strong>
-                <p>Contact email</p>
+            <div class="stat-box">
+                <strong>Portfolio</strong>
+                <p>Admin Panel</p>
             </div>
         </div>
 
-        <div class="grid">
-            <div class="card">
-                <h2>Home Content</h2>
-                <p id="homeDescription">Loading home content...</p>
-                <div class="item" style="margin-top: 18px;">
-                    <h3>Profile Links</h3>
-                    <p><a href="#" id="githubLink" target="_blank">GitHub</a></p>
-                    <p><a href="#" id="linkedinLink" target="_blank">LinkedIn</a></p>
-                    <p><a href="#" id="instagramLink" target="_blank">Instagram</a></p>
+        <div class="sections">
+            <div class="section">
+                <h2>About You</h2>
+                <div id="homeContent">
+                    <div class="loading">Loading...</div>
                 </div>
             </div>
 
-            <div class="card">
-                <h2>Project List</h2>
-                <div class="grid-2" id="projectGrid">
-                    <p>Loading projects...</p>
+            <div class="section">
+                <h2>Contact Information</h2>
+                <div id="contactContent">
+                    <div class="loading">Loading...</div>
                 </div>
             </div>
+        </div>
 
-            <div class="card">
-                <h2>Gallery Items</h2>
-                <div class="grid-2" id="galleryGrid">
-                    <p>Loading gallery...</p>
-                </div>
+        <div class="section">
+            <h2>Projects</h2>
+            <div class="grid" id="projectsGrid">
+                <div class="loading">Loading projects...</div>
             </div>
+        </div>
 
-            <div class="card">
-                <h2>Contact Info</h2>
-                <div class="item">
-                    <h3 id="contactTitle">Contact details</h3>
-                    <p id="contactBody">Loading contact info...</p>
-                </div>
+        <div class="section">
+            <h2>Gallery</h2>
+            <div class="grid" id="galleryGrid">
+                <div class="loading">Loading gallery...</div>
             </div>
         </div>
     </div>
@@ -185,17 +287,20 @@
         const logoutBtn = document.getElementById('logoutBtn');
 
         logoutBtn.addEventListener('click', async () => {
-            await fetch('/api/auth/logout', { method: 'POST' });
+            try {
+                await fetch('/api/auth/logout', { method: 'POST', credentials: 'include' });
+            } catch (err) {
+                console.error(err);
+            }
             window.location.href = '/login';
         });
 
         function showAlert(message) {
             alertBox.textContent = message;
             alertBox.style.display = 'block';
-        }
-
-        function hideAlert() {
-            alertBox.style.display = 'none';
+            setTimeout(() => {
+                alertBox.style.display = 'none';
+            }, 5000);
         }
 
         async function fetchData(path) {
@@ -203,50 +308,143 @@
             if (!res.ok) {
                 if (res.status === 401) {
                     window.location.href = '/login';
+                    return null;
                 }
                 throw new Error('Failed to fetch ' + path);
             }
             return res.json();
         }
 
-        function renderProjects(projects) {
-            const container = document.getElementById('projectGrid');
-            container.innerHTML = '';
-            if (!projects.length) {
-                container.innerHTML = '<p>No projects configured yet.</p>';
+        function renderHome(data) {
+            if (!data) {
+                document.getElementById('homeContent').innerHTML = '<div class="empty-message">No home content</div>';
                 return;
             }
-            projects.forEach(project => {
-                const item = document.createElement('div');
-                item.className = 'item';
-                item.innerHTML = `<h3>${project.title || 'Untitled'}</h3>
-                    <p>${project.description || 'No description provided.'}</p>
-                    <p><small>${(project.technologies || []).join(', ')}</small></p>
-                    <p><a href="${project.githubLink || '#'}" target="_blank">View repo</a></p>`;
-                container.appendChild(item);
-            });
+
+            let html = `
+                <div class="info-item">
+                    <div class="info-label">Title</div>
+                    <div class="info-value">${data.title || '-'}</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Description</div>
+                    <div class="info-value">${data.description || '-'}</div>
+                </div>
+            `;
+            
+            if (data.imageUrl) {
+                html += `
+                    <div class="info-item">
+                        <div class="info-label">Image</div>
+                        <div class="info-value"><a href="${data.imageUrl}" target="_blank">View Image</a></div>
+                    </div>
+                `;
+            }
+
+            document.getElementById('homeContent').innerHTML = html;
+        }
+
+        function renderContact(data) {
+            if (!data) {
+                document.getElementById('contactContent').innerHTML = '<div class="empty-message">No contact info</div>';
+                return;
+            }
+
+            let html = `
+                <div class="info-item">
+                    <div class="info-label">Email</div>
+                    <div class="info-value"><a href="mailto:${data.email}">${data.email}</a></div>
+                </div>
+                ${data.phone ? `
+                    <div class="info-item">
+                        <div class="info-label">Phone</div>
+                        <div class="info-value">${data.phone}</div>
+                    </div>
+                ` : ''}
+                ${data.address ? `
+                    <div class="info-item">
+                        <div class="info-label">Address</div>
+                        <div class="info-value">${data.address}</div>
+                    </div>
+                ` : ''}
+                ${data.github ? `
+                    <div class="info-item">
+                        <div class="info-label">GitHub</div>
+                        <div class="info-value"><a href="${data.github}" target="_blank">Profile</a></div>
+                    </div>
+                ` : ''}
+                ${data.linkedin ? `
+                    <div class="info-item">
+                        <div class="info-label">LinkedIn</div>
+                        <div class="info-value"><a href="${data.linkedin}" target="_blank">Profile</a></div>
+                    </div>
+                ` : ''}
+                ${data.instagram ? `
+                    <div class="info-item">
+                        <div class="info-label">Instagram</div>
+                        <div class="info-value"><a href="${data.instagram}" target="_blank">Profile</a></div>
+                    </div>
+                ` : ''}
+                ${data.twitter ? `
+                    <div class="info-item">
+                        <div class="info-label">Twitter</div>
+                        <div class="info-value"><a href="${data.twitter}" target="_blank">Profile</a></div>
+                    </div>
+                ` : ''}
+            `;
+
+            document.getElementById('contactContent').innerHTML = html;
+        }
+
+        function renderProjects(projects) {
+            const container = document.getElementById('projectsGrid');
+            
+            if (!projects || projects.length === 0) {
+                container.innerHTML = '<div class="empty-message" style="grid-column: 1/-1;">No projects yet</div>';
+                return;
+            }
+
+            container.innerHTML = projects.map(project => `
+                <div class="item-card">
+                    <h3>${project.title || 'Untitled'}</h3>
+                    <p>${project.description || 'No description'}</p>
+                    ${project.technologies && project.technologies.length > 0 ? `
+                        <small><strong>Tech:</strong> ${project.technologies.join(', ')}</small>
+                    ` : ''}
+                    ${project.githubLink ? `
+                        <div style="margin-top: 8px;">
+                            <a href="${project.githubLink}" target="_blank" style="font-size: 12px;">→ GitHub</a>
+                        </div>
+                    ` : ''}
+                </div>
+            `).join('');
         }
 
         function renderGallery(items) {
             const container = document.getElementById('galleryGrid');
-            container.innerHTML = '';
-            if (!items.length) {
-                container.innerHTML = '<p>No gallery items configured yet.</p>';
+            
+            if (!items || items.length === 0) {
+                container.innerHTML = '<div class="empty-message" style="grid-column: 1/-1;">No gallery items yet</div>';
                 return;
             }
-            items.forEach(itemData => {
-                const item = document.createElement('div');
-                item.className = 'item';
-                item.innerHTML = `<h3>${itemData.title || 'Untitled'}</h3>
-                    <p>${itemData.description || 'No description.'}</p>
-                    <p><small>${itemData.altText || ''}</small></p>
-                    <p><a href="${itemData.url || '#'}" target="_blank">View image</a></p>`;
-                container.appendChild(item);
-            });
+
+            container.innerHTML = items.map(item => `
+                <div class="item-card">
+                    <h3>${item.title || 'Untitled'}</h3>
+                    <p>${item.description || 'No description'}</p>
+                    ${item.category ? `
+                        <small><strong>Category:</strong> ${item.category}</small>
+                    ` : ''}
+                    ${item.url ? `
+                        <div style="margin-top: 8px;">
+                            <a href="${item.url}" target="_blank" style="font-size: 12px;">→ View</a>
+                        </div>
+                    ` : ''}
+                </div>
+            `).join('');
         }
 
         async function loadDashboard() {
-            hideAlert();
             try {
                 const [homeRes, projectsRes, galleryRes, contactRes] = await Promise.all([
                     fetchData('/api/admin/home'),
@@ -255,22 +453,29 @@
                     fetchData('/api/admin/contact'),
                 ]);
 
-                document.getElementById('projectCount').textContent = (projectsRes.data || []).length;
-                document.getElementById('galleryCount').textContent = (galleryRes.data || []).length;
-                document.getElementById('contactEmail').textContent = contactRes.data.email || '-';
-                document.getElementById('homeDescription').textContent = homeRes.data.description || 'No home description provided.';
-                document.getElementById('githubLink').href = homeRes.data.github || '#';
-                document.getElementById('linkedinLink').href = homeRes.data.linkedin || '#';
-                document.getElementById('instagramLink').href = homeRes.data.instagram || '#';
-                document.getElementById('contactBody').innerHTML = `Email: <a href="mailto:${contactRes.data.email}">${contactRes.data.email}</a><br><br>GitHub: <a href="${contactRes.data.github}" target="_blank">${contactRes.data.github}</a><br>LinkedIn: <a href="${contactRes.data.linkedin}" target="_blank">${contactRes.data.linkedin}</a><br>Instagram: <a href="${contactRes.data.instagram}" target="_blank">${contactRes.data.instagram}</a>`;
-                renderProjects(projectsRes.data || []);
-                renderGallery(galleryRes.data || []);
+                if (homeRes) {
+                    renderHome(homeRes.data);
+                }
+
+                if (contactRes) {
+                    renderContact(contactRes.data);
+                }
+
+                const projects = projectsRes?.data || [];
+                const gallery = galleryRes?.data || [];
+
+                document.getElementById('projectCount').textContent = projects.length;
+                document.getElementById('galleryCount').textContent = gallery.length;
+
+                renderProjects(projects);
+                renderGallery(gallery);
             } catch (error) {
-                showAlert('Unable to load dashboard data. Please refresh or login again.');
+                showAlert('Failed to load dashboard data. Please refresh or login again.');
                 console.error(error);
             }
         }
 
+        // Load dashboard on page load
         loadDashboard();
     </script>
 </body>
