@@ -8,7 +8,7 @@ const Projects = () => {
     {
       id: 1,
       title: "Shift Management System",
-      description: "A Java Swing application for managing shift schedules and employee assignments with a user-friendly interface.",
+      description: "A shift management system built with Golang and PostgreSQL, designed to help organizations efficiently schedule and manage employee shifts, with features for shift creation, assignment, and reporting.",
       technologies: ["Golang", "PostgreSQL", "Docker"],
       githubLink: "https://github.com/Nishchal-ll/Shift-Management-System.git",
     },
