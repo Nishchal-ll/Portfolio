@@ -7,45 +7,45 @@ const Projects = () => {
   const projects = [
     {
       id: 1,
-      title: "Morse Code Generator-Swing",
-      description: "A Java Swing application that converts text into Morse code, supporting letters A-Z, numbers 0-9, and spaces with a simple GUI interface.",
-      technologies: ["Java", "Swing", "HashMap"],
-      githubLink: "https://github.com/Nishchal-ll/MorseCodeGenerator-Swing",
+      title: "Shift Management System",
+      description: "A Java Swing application for managing shift schedules and employee assignments with a user-friendly interface.",
+      technologies: ["Golang", "PostgreSQL", "Docker"],
+      githubLink: "https://github.com/Nishchal-ll/Shift-Management-System.git",
     },
     {
       id: 2,
-      title: "JDBC Java Project",
-      description: "A Java project demonstrating database connectivity using JDBC, allowing CRUD operations on a relational database through console input.",
-      technologies: ["Java", "JDBC", "SQL"],
-      githubLink: "https://github.com/Nishchal-ll/JDBC-Java.git",
+      title: "AutoTweet",
+      description: "A Next.js project demonstrating automated tweeting functionality using the Twitter API, allowing users to schedule and post tweets programmatically.",
+      technologies: ["Next.js", "Twitter API", "Hugging Face API"],
+      githubLink: "https://github.com/Nishchal-ll/AutoTweet.git",
     },
     {
       id: 3,
-      title: "Car Rental Management System",
-      description: "A console-based Java application to manage student information, including adding, updating, deleting, and viewing student records.",
-      technologies: ["Java", "Console Application", "File Handling"],
-      githubLink: "https://github.com/Nishchal-ll/CarRentalManagementSystem-CoreJava.git",
-    },
-    {
-      id: 4,
-      title: "MiniMotors E-commerce",
-      description: "A full-stack e-commerce platform for Hot Wheels cars built with React and Laravel, featuring product browsing, cart functionality, Stripe checkout, and an admin dashboard.",
-      technologies: ["React", "Laravel", "Khalti", "SQL"],
+      title: "Mini-Motors",
+      description: "An ecommerce application for Hot Wheels cars built with Laravel, featuring product browsing, cart functionality, and Stripe checkout integration.",
+      technologies: ["Laravel", "Khalti", "MySQL"],
       githubLink: "https://github.com/Nishchal-ll/Minimotors-FullStack-Project.git",
     },
     {
+      id: 4,
+      title: "Celtic Trekking",
+      description: "A full-stack web application for a trekking company, built with Laravel and Filament, allowing users to browse trekking packages, make bookings, and manage their reservations through an admin dashboard.",
+      technologies: ["Laravel", "Filament", "MySQL"],
+      githubLink: "https://github.com/Nishchal-ll/Celtic-Trekking.git",
+    },
+    {
       id: 5,
-      title: "Super App Website - Gorkha Ride",
-      description: "A responsive website for the Gorkha Ride app, built to promote the platform and its services, featuring a modern UI and engaging content for riders, service providers, and restaurants.",
-      technologies: ["HTML", "CSS", "JavaScript", "Responsive Design"],
-      githubLink: "https://github.com/Nishchal-ll/GorkhaRide-Website.git",
+      title: "Honorific Aware English to Nepali Translation System",
+      description: "A responsive website for translating English text to Nepali, built with modern web technologies and a user-friendly interface.",
+      technologies: ["Python", "Flask", "HTML", "CSS"],
+      githubLink: "https://github.com/Nishchal-ll/Machine-Translation.git",
     },
     {
       id: 6,
-      title: "PHP CRUD Application",
-      description: "A simple PHP application implementing CRUD operations (Create, Read, Update, Delete) for managing records in a MySQL database.",
-      technologies: ["PHP", "MySQL", "HTML", "CSS"],
-      githubLink: "https://github.com/Nishchal-ll/PHP-Crud.git",
+      title: "Kanban Board",
+      description: "A simple Kanban board application built with Node.js, Express, and MongoDB, allowing users to create, manage, and organize tasks in a visual workflow.",
+      technologies: ["Node.js", "Express", "MongoDB"],
+      githubLink: "https://github.com/Nishchal-ll/Kanban-Board.git",
     },
   ];
 
@@ -54,7 +54,7 @@ const Projects = () => {
       <Helmet>
         <title>Projects | Nishchal Acharya</title>
         <meta name="description" content="Browse the latest web projects by Nishchal Acharya." />
-        <meta name="keywords" content="Nishchal Acharya projects, React, Laravel, Node.js, Fullstack" />
+        <meta name="keywords" content="Nishchal Acharya projects,Golang, Laravel, React.js, Fullstack" />
       </Helmet>
 
       <div className="relative min-h-screen overflow-hidden transition-all duration-500">
