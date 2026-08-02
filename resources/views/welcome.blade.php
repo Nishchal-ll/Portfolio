@@ -4,45 +4,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nishchal Acharya | Full Stack Developer & Software Engineer Portfolio</title>
-    <meta name="description" content="Explore the personal portfolio of Nishchal Acharya, a Full Stack Developer specializing in crafting modern, high-performance web applications using Laravel, Go, and React.">
-    <meta name="keywords" content="Nishchal Acharya, Nishchal, Acharya, Full Stack Developer, Software Engineer, Web Developer, Laravel, Go, React, Portfolio, Nepal, Nishchal-ll, Robust Trade, Celtic Trekking, AutoTweet">
-    <meta name="author" content="Nishchal Acharya">
-    <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://acharyanishchal.com.np">
-
-    <!-- JSON-LD Structured Data Schema Markup (Wrapped to prevent Blade parsing issues) -->
-    {!! '<script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "Person",
-          "@id": "https://acharyanishchal.com.np/#person",
-          "name": "Nishchal Acharya",
-          "url": "https://acharyanishchal.com.np",
-          "image": "https://acharyanishchal.com.np/me1.png",
-          "jobTitle": "Full Stack Developer",
-          "knowsAbout": ["Laravel", "PHP", "Go", "Golang", "React", "Next.js", "Python", "Web Development", "Software Engineering"],
-          "sameAs": [
-            "https://github.com/Nishchal-ll",
-            "https://www.linkedin.com/in/nishchalacharyaaa/",
-            "https://instagram.com/nishchal._.l"
-          ]
-        },
-        {
-          "@type": "WebSite",
-          "@id": "https://acharyanishchal.com.np/#website",
-          "url": "https://acharyanishchal.com.np",
-          "name": "Nishchal Acharya Portfolio",
-          "description": "Personal Portfolio of Nishchal Acharya, Full Stack Developer & Software Engineer.",
-          "publisher": {
-            "@id": "https://acharyanishchal.com.np/#person"
-          }
+    
+    @php
+        $appUrl = rtrim(config('app.url'), '/');
+        $appName = config('app.name');
+        
+        // Format camelCase/PascalCase app name to spaced name if needed (e.g. "NishchalAcharya" -> "Nishchal Acharya")
+        $formattedName = preg_replace('/(?<!^)(?=[A-Z])/', ' ', $appName);
+        if (!$formattedName) {
+            $formattedName = $appName;
         }
-      ]
-    }
-    </script>' !!}
+
+        $schema = [
+            '@context' => 'https://schema.org',
+            '@graph' => [
+                [
+                    '@type' => 'Person',
+                    '@id' => $appUrl . '/#person',
+                    'name' => $formattedName,
+                    'url' => $appUrl,
+                    'image' => $appUrl . '/me1.png',
+                    'jobTitle' => 'Full Stack Developer',
+                    'knowsAbout' => ['Laravel', 'PHP', 'Go', 'Golang', 'React', 'Next.js', 'Python', 'Web Development', 'Software Engineering'],
+                    'sameAs' => [
+                        'https://github.com/Nishchal-ll',
+                        'https://www.linkedin.com/in/nishchalacharyaaa/',
+                        'https://instagram.com/nishchal._.l'
+                    ]
+                ],
+                [
+                    '@type' => 'WebSite',
+                    '@id' => $appUrl . '/#website',
+                    'url' => $appUrl,
+                    'name' => $formattedName . ' Portfolio',
+                    'description' => 'Personal Portfolio of ' . $formattedName . ', Full Stack Developer & Software Engineer.',
+                    'publisher' => [
+                        '@id' => $appUrl . '/#person'
+                    ]
+                ]
+            ]
+        ];
+    @endphp
+
+    <title>{{ $formattedName }} | Full Stack Developer & Software Engineer Portfolio</title>
+    <meta name="description" content="Explore the personal portfolio of {{ $formattedName }}, a Full Stack Developer specializing in crafting modern, high-performance web applications using Laravel, Go, and React.">
+    <meta name="keywords" content="{{ $formattedName }}, Nishchal, Acharya, Full Stack Developer, Software Engineer, Web Developer, Laravel, Go, React, Portfolio, Nepal, Nishchal-ll, Robust Trade, Celtic Trekking, AutoTweet">
+    <meta name="author" content="{{ $formattedName }}">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="{{ $appUrl }}">
+
+    <!-- JSON-LD Structured Data Schema Markup -->
+    <script type="application/ld+json">
+        {!! json_encode($schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT) !!}
+    </script>
 
     <link rel="icon" type="image/png" href="/me1.png">
     <script src="https://cdn.tailwindcss.com"></script>
