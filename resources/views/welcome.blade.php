@@ -4,7 +4,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ $aboutMe->title ?? 'Full Stack Developer' }} — {{ $contactInfo->name ?? 'Nishchal Acharya' }}</title>
+    <title>Nishchal Acharya | Full Stack Developer & Software Engineer Portfolio</title>
+    <meta name="description" content="Explore the personal portfolio of Nishchal Acharya, a Full Stack Developer specializing in crafting modern, high-performance web applications using Laravel, Go, and React.">
+    <meta name="keywords" content="Nishchal Acharya, Nishchal, Acharya, Full Stack Developer, Software Engineer, Web Developer, Laravel, Go, React, Portfolio, Nepal, Nishchal-ll, Robust Trade, Celtic Trekking, AutoTweet">
+    <meta name="author" content="Nishchal Acharya">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <link rel="canonical" href="https://acharyanishchal.com.np">
+
+    <!-- Open Graph / Facebook / LinkedIn / Discord -->
+    <meta property="og:locale" content="en_US">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Nishchal Acharya | Full Stack Developer & Software Engineer Portfolio">
+    <meta property="og:description" content="Explore the personal portfolio of Nishchal Acharya, a Full Stack Developer specializing in crafting modern, high-performance web applications using Laravel, Go, and React.">
+    <meta property="og:url" content="https://acharyanishchal.com.np">
+    <meta property="og:site_name" content="Nishchal Acharya Portfolio">
+    <meta property="og:image" content="https://acharyanishchal.com.np/webpage.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:type" content="image/png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Nishchal Acharya | Full Stack Developer Portfolio">
+    <meta name="twitter:description" content="Explore the personal portfolio of Nishchal Acharya, a Full Stack Developer specializing in crafting modern, high-performance web applications using Laravel, Go, and React.">
+    <meta name="twitter:image" content="https://acharyanishchal.com.np/webpage.png">
+
+    <!-- JSON-LD Structured Data Schema Markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Person",
+          "@id": "https://acharyanishchal.com.np/#person",
+          "name": "Nishchal Acharya",
+          "url": "https://acharyanishchal.com.np",
+          "image": "https://acharyanishchal.com.np/me1.png",
+          "jobTitle": "Full Stack Developer",
+          "knowsAbout": ["Laravel", "PHP", "Go", "Golang", "React", "Next.js", "Python", "Web Development", "Software Engineering"],
+          "sameAs": [
+            "https://github.com/Nishchal-ll",
+            "https://www.linkedin.com/in/nishchalacharyaaa/",
+            "https://instagram.com/nishchal._.l"
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://acharyanishchal.com.np/#website",
+          "url": "https://acharyanishchal.com.np",
+          "name": "Nishchal Acharya Portfolio",
+          "description": "Personal Portfolio of Nishchal Acharya, Full Stack Developer & Software Engineer.",
+          "publisher": {
+            "@id": "https://acharyanishchal.com.np/#person"
+          }
+        }
+      ]
+    }
+    </script>
     <link rel="icon" type="image/png" href="/me1.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -161,6 +217,8 @@
 </head>
 
 <body>
+    <!-- Accessibility/SEO Semantic Headings -->
+    <h1 class="sr-only">Nishchal Acharya - Full Stack Developer Portfolio</h1>
 
     <!-- Background grid -->
     <div class="grid-bg"></div>
@@ -256,6 +314,7 @@
 
         <!-- HOME TAB SECTION -->
         <div id="tab-home" class="tab-section mx-auto flex min-h-screen w-full max-w-7xl items-center px-4 pb-12 pt-32 sm:px-6 md:pt-28 lg:px-8">
+            <h2 class="sr-only">Home</h2>
             <div class="grid w-full grid-cols-1 items-center gap-8 md:grid-cols-2 lg:gap-16">
                 <!-- Grayscale Photo (No Grayscale, Made Bigger, Placed a bit more up) -->
                 <div class="flex justify-center transition-all duration-1000 transform translate-x-0 opacity-100 -translate-y-8 md:-translate-y-12">
@@ -338,6 +397,7 @@
 
         <!-- PROJECTS TAB SECTION -->
         <div id="tab-projects" class="tab-section mx-auto max-w-7xl px-4 pb-20 pt-36 sm:px-6 lg:px-8 hidden">
+            <h2 class="sr-only">Projects Showcase</h2>
             <!-- Terminal Header -->
             <div class="max-w-6xl mx-auto mb-10">
                 <div class="overflow-hidden rounded-xl border border-slate-200 bg-white/95 shadow-lg backdrop-blur">
@@ -450,6 +510,7 @@
 
         <!-- CONTACT TAB SECTION -->
         <div id="tab-contact" class="tab-section mx-auto w-full max-w-2xl px-4 py-16 pt-36 hidden">
+            <h2 class="sr-only">Contact Details</h2>
             <div class="overflow-hidden rounded-xl border border-slate-200 bg-white/95 shadow-xl backdrop-blur font-mono">
                 <!-- Chrome bar -->
                 <div class="flex items-center justify-between border-b border-slate-200 bg-slate-100 px-4 py-2.5 select-none">
