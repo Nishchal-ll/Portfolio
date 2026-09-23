@@ -4,65 +4,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    @php
-        $appUrl = rtrim(config('app.url'), '/');
-        $appName = config('app.name');
-        
-        // Format camelCase/PascalCase app name to spaced name if needed (e.g. "NishchalAcharya" -> "Nishchal Acharya")
-        $formattedName = preg_replace('/(?<!^)(?=[A-Z])/', ' ', $appName);
-        if (!$formattedName || $formattedName === 'Laravel') {
-            $formattedName = 'Nishchal Acharya';
-        }
-
-        $schema = [
-            '@context' => 'https://schema.org',
-            '@graph' => [
-                [
-                    '@type' => 'Person',
-                    '@id' => $appUrl . '/#person',
-                    'name' => $formattedName,
-                    'url' => $appUrl,
-                    'image' => $appUrl . '/me1.webp',
-                    'jobTitle' => 'Golang Developer',
-                    'knowsAbout' => ['Golang', 'Go', 'Laravel', 'PHP', 'React', 'Next.js', 'Python', 'Web Development', 'Software Engineering'],
-                    'sameAs' => [
-                        'https://github.com/Nishchal-ll',
-                        'https://www.linkedin.com/in/nishchalacharyaaa/',
-                        'https://instagram.com/nishchal._.l'
-                    ]
-                ],
-                [
-                    '@type' => 'WebSite',
-                    '@id' => $appUrl . '/#website',
-                    'url' => $appUrl,
-                    'name' => $formattedName . ' Portfolio',
-                    'description' => 'Personal Portfolio of ' . $formattedName . ', Golang Developer & Software Engineer.',
-                    'publisher' => [
-                        '@id' => $appUrl . '/#person'
-                    ]
-                ]
-            ]
-        ];
-    @endphp
 
     <title>{{ $formattedName }} - Golang Developer &amp; Software Engineer</title>
     <meta name="description" content="Explore the portfolio of {{ $formattedName }}, a Golang Developer and Software Engineer specializing in building scalable backend systems, high-performance microservices, Go, Laravel, and React.">
     <meta name="keywords" content="{{ $formattedName }}, Nishchal, Acharya, Golang Developer, Go Developer, Software Engineer, Backend Developer, Web Developer, Laravel, Go, React, Portfolio, Nepal, Nishchal-ll">
     <meta name="author" content="{{ $formattedName }}">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
-    <link rel="canonical" href="{{ $appUrl }}">
+    <link rel="canonical" href="{{ $canonicalUrl }}">
 
     <!-- Open Graph / Facebook / LinkedIn / Discord -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="{{ $appUrl }}">
+    <meta property="og:url" content="{{ $canonicalUrl }}">
     <meta property="og:title" content="{{ $formattedName }} - Golang Developer &amp; Software Engineer">
     <meta property="og:description" content="Explore the portfolio of {{ $formattedName }}, a Golang Developer and Software Engineer specializing in building scalable backend systems, high-performance microservices, Go, Laravel, and React.">
     <meta property="og:image" content="{{ $appUrl }}/me1.webp">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:url" content="{{ $appUrl }}">
+    <meta name="twitter:url" content="{{ $canonicalUrl }}">
     <meta name="twitter:title" content="{{ $formattedName }} - Golang Developer &amp; Software Engineer">
     <meta name="twitter:description" content="Explore the portfolio of {{ $formattedName }}, a Golang Developer and Software Engineer specializing in building scalable backend systems, high-performance microservices, Go, Laravel, and React.">
     <meta name="twitter:image" content="{{ $appUrl }}/me1.webp">
@@ -85,10 +44,12 @@
     <!-- Google Fonts with display=swap -->
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- Asynchronous Non-blocking FontAwesome -->
+    <!-- Asynchronous Non-blocking FontAwesome & Devicon for Tech Stack Icons -->
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
     <noscript>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
     </noscript>
 
     <!-- Vite compiled optimized CSS/JS with Tailwind CDN fallback for 100% bulletproof rendering -->
@@ -219,8 +180,8 @@
         <div id="tab-home" class="tab-section mx-auto flex min-h-screen w-full max-w-7xl items-center px-4 pb-12 pt-32 sm:px-6 md:pt-28 lg:px-8">
             <div class="grid w-full grid-cols-1 items-center gap-8 md:grid-cols-2 lg:gap-16">
                 <!-- Developer Photo (Optimized with high-priority webp) -->
-                <div class="flex justify-center -translate-y-8 md:-translate-y-12">
-                    <div class="relative group w-full max-w-[24rem] sm:max-w-md md:max-w-lg lg:max-w-xl">
+                <div class="flex justify-center -translate-y-6 md:-translate-y-8">
+                    <div class="relative group w-full max-w-[24rem] sm:max-w-[27rem] md:max-w-[31rem] lg:max-w-[35rem]">
                         <!-- Neon blur glow background behind developer picture -->
                         <div class="pointer-events-none absolute inset-x-[-15%] bottom-[3%] top-[5%] -z-10 rounded-full bg-lime-300/40 blur-3xl"></div>
                         <picture>
@@ -271,16 +232,7 @@
                             </h1>
 
                             <div class="space-y-2 border-l-2 border-slate-300 pl-3 text-xs leading-relaxed text-slate-600 sm:text-sm">
-                                <p><span class="text-slate-400">&gt;</span> 
-                                    @php
-                                        $rawLine1 = $aboutMe->line_1 ?? 'Crafting modern web applications using Golang, Laravel and React.';
-                                        // Highlight Golang prominently in green bold text, keep Laravel and React as plain text
-                                        $highlightedLine1 = preg_replace_callback('/\b(Golang|Go)\b/i', function($m) {
-                                            return '<span class="text-accent font-extrabold text-[1.2em] tracking-tight">' . e($m[0]) . '</span>';
-                                        }, e($rawLine1));
-                                    @endphp
-                                    {!! $highlightedLine1 !!}
-                                </p>
+                                <p><span class="text-slate-400">&gt;</span> {!! $highlightedLine1 !!}</p>
                                 <p><span class="text-slate-400">&gt;</span> {{ $aboutMe->line_2 ?? 'Focusing on performance, security, and scalable architecture.' }}</p>
                                 <p><span class="text-slate-400">&gt;</span> <span class="text-warning">{{ $aboutMe->line_3 ?? '// Ready to deploy solutions.' }}</span></p>
                             </div>
@@ -402,32 +354,18 @@
                             </h3>
                         </div>
                         <p class="line-clamp-3 border-l-2 border-slate-200 pl-2 text-xs leading-relaxed text-slate-500">
-                            @php
-                                $desc = e($project->description);
-                                // Highlight Golang / Go in description
-                                $desc = preg_replace_callback('/\b(Go\s*\(Golang\)|Golang|Go)\b/i', function($m) {
-                                    return '<span class="font-bold text-[#007D9C]">' . $m[0] . '</span>';
-                                }, $desc);
-                            @endphp
-                            {!! $desc !!}
+                            {!! $project->formatted_description !!}
                         </p>
                         <div>
-                            <p class="mb-1.5 text-xs text-slate-400">
+                            <p class="mb-2 text-xs text-slate-400">
                                 <span class="text-accent">$</span> cat package.json | grep tech
                             </p>
-                            <div class="flex flex-wrap gap-1.5">
-                                @if(is_array($project->technologies))
-                                    @foreach($project->technologies as $tech)
-                                        @if(in_array(strtolower($tech), ['go', 'golang']))
-                                            <span class="inline-flex items-center gap-1 rounded border border-[#00ADD8]/40 bg-[#00ADD8]/15 px-2 py-0.5 text-xs font-bold text-[#007D9C] shadow-xs">
-                                                <i class="fas fa-bolt text-[10px] text-[#00ADD8]"></i>
-                                                {{ $tech }}
-                                            </span>
-                                        @else
-                                            <span class="rounded border border-accent/20 bg-accent-glow px-2 py-0.5 text-xs font-medium text-accent">
-                                                {{ $tech }}
-                                            </span>
-                                        @endif
+                            <div class="flex flex-wrap items-center gap-3 py-1">
+                                @if(!empty($project->tech_badges))
+                                    @foreach($project->tech_badges as $tech)
+                                        <div class="cursor-pointer transition-transform duration-200 hover:scale-125 inline-flex items-center" title="{{ $tech['name'] }}">
+                                            <i class="{{ $tech['icon'] }} text-xl sm:text-2xl leading-none"></i>
+                                        </div>
                                     @endforeach
                                 @endif
                             </div>

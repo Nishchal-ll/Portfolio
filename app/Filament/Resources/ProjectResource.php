@@ -32,6 +32,12 @@ class ProjectResource extends Resource
                 Forms\Components\TextInput::make('title')
                     ->required()
                     ->maxLength(255),
+                Forms\Components\TextInput::make('order')
+                    ->label('Display Order')
+                    ->numeric()
+                    ->default(0)
+                    ->helperText('Lower number appears first (e.g. 1, 2, 3...)')
+                    ->required(),
                 Forms\Components\TextInput::make('github_link')
                     ->maxLength(500)
                     ->default(null),
@@ -40,33 +46,47 @@ class ProjectResource extends Resource
                     ->default(null),
                 Forms\Components\Select::make('technologies')
                     ->multiple()
+                    ->searchable()
                     ->options([
+                        'Golang' => 'Golang / Go',
+                        'Go' => 'Go',
                         'Laravel' => 'Laravel',
+                        'PHP' => 'PHP',
                         'React' => 'React',
-                        'Golang' => 'Golang',
-                        'Vue.js' => 'Vue.js',
                         'Next.js' => 'Next.js',
-                        'Tailwind CSS' => 'Tailwind CSS',
-                        'MySQL' => 'MySQL',
-                        'PostgreSQL' => 'PostgreSQL',
-                        'Docker' => 'Docker',
-                        'AWS' => 'AWS',
-                        'HTML' => 'HTML',
-                        'CSS' => 'CSS',
-                        'JavaScript' => 'JavaScript',
+                        'Vue.js' => 'Vue.js',
                         'TypeScript' => 'TypeScript',
+                        'JavaScript' => 'JavaScript',
                         'Python' => 'Python',
                         'Django' => 'Django',
+                        'FastAPI' => 'FastAPI',
                         'Flask' => 'Flask',
                         'Node.js' => 'Node.js',
                         'Express.js' => 'Express.js',
+                        'Docker' => 'Docker',
+                        'Kubernetes' => 'Kubernetes',
+                        'Azure' => 'Azure',
+                        'AWS' => 'AWS',
+                        'GCP' => 'GCP (Google Cloud)',
+                        'CI/CD' => 'CI/CD',
+                        'GitHub Actions' => 'GitHub Actions',
+                        'PostgreSQL' => 'PostgreSQL',
+                        'MySQL' => 'MySQL',
                         'MongoDB' => 'MongoDB',
                         'Redis' => 'Redis',
-                        'PHP' => 'PHP',
-                        'C++' => 'C++',
-                        'Go' => 'Go',
+                        'Kafka' => 'Kafka',
+                        'RabbitMQ' => 'RabbitMQ',
+                        'Linux' => 'Linux',
+                        'Nginx' => 'Nginx',
+                        'Git' => 'Git',
+                        'Tailwind CSS' => 'Tailwind CSS',
+                        'GraphQL' => 'GraphQL',
+                        'REST API' => 'REST API',
                         'Flutter' => 'Flutter',
                         'Dart' => 'Dart',
+                        'C++' => 'C++',
+                        'HTML' => 'HTML',
+                        'CSS' => 'CSS',
                     ])
                     ->required(),
                 Forms\Components\Select::make('category')
@@ -91,12 +111,17 @@ class ProjectResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+            ->defaultSort('order', 'asc')
             ->columns([
+                Tables\Columns\TextColumn::make('order')
+                    ->label('Order')
+                    ->sortable(),
                 Tables\Columns\ImageColumn::make('image_url')
                     ->label('Cover')
                     ->disk('public'),
                 Tables\Columns\TextColumn::make('title')
-                    ->searchable(),
+                    ->searchable()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('category')
                     ->badge()
                     ->color(fn (string $state): string => match ($state) {
@@ -106,9 +131,11 @@ class ProjectResource extends Resource
                     })
                     ->searchable(),
                 Tables\Columns\TextColumn::make('github_link')
-                    ->searchable(),
+                    ->searchable()
+                    ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('live_link')
-                    ->searchable(),
+                    ->searchable()
+                    ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

@@ -10,6 +10,7 @@ class Project extends Model
         'title',
         'description',
         'category',
+        'order',
         'technologies',
         'github_link',
         'live_link',
@@ -18,6 +19,7 @@ class Project extends Model
 
     protected $casts = [
         'technologies' => 'array',
+        'order' => 'integer',
     ];
 
     /**
