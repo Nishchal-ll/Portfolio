@@ -89,6 +89,14 @@ class ProjectResource extends Resource
                         'CSS' => 'CSS',
                     ])
                     ->required(),
+                Forms\Components\TextInput::make('slug')
+                    ->label('URL Slug')
+                    ->helperText('e.g. shift-management-system')
+                    ->maxLength(255),
+                Forms\Components\TextInput::make('project_role')
+                    ->label('Your Role in Project')
+                    ->placeholder('e.g. Lead Golang Engineer')
+                    ->maxLength(255),
                 Forms\Components\Select::make('category')
                     ->options([
                         'freelance' => 'Freelance Project',
@@ -96,13 +104,31 @@ class ProjectResource extends Resource
                         'self-made' => 'Self-Made Project',
                     ])
                     ->required(),
+                Forms\Components\TextInput::make('industry')
+                    ->label('Domain / Category')
+                    ->placeholder('e.g. Web Application / Hydropower CMMS')
+                    ->maxLength(255),
+                Forms\Components\TextInput::make('date_range')
+                    ->label('Date / Timeline (Start - End)')
+                    ->placeholder('e.g. Jan 2026 - Present or June 2026')
+                    ->maxLength(255),
                 Forms\Components\FileUpload::make('image_url')
-                    ->label('Cover Image')
+                    ->label('Main Featured / Cover Image')
                     ->image()
                     ->disk('public')
                     ->directory('projects')
                     ->columnSpanFull(),
-                Forms\Components\Textarea::make('description')
+                Forms\Components\FileUpload::make('gallery_images')
+                    ->label('Project Gallery & Screenshots')
+                    ->multiple()
+                    ->reorderable()
+                    ->image()
+                    ->disk('public')
+                    ->directory('projects/gallery')
+                    ->helperText('Upload screenshot previews to display in the bottom gallery')
+                    ->columnSpanFull(),
+                Forms\Components\RichEditor::make('description')
+                    ->label('Project Description & Content')
                     ->required()
                     ->columnSpanFull(),
             ]);

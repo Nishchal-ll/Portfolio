@@ -42,7 +42,17 @@ class AboutMeResource extends Resource
                     ->required()
                     ->maxLength(500),
                 Forms\Components\FileUpload::make('image_url')
-                    ->image(),
+                    ->label('Profile Picture')
+                    ->image()
+                    ->directory('about'),
+                Forms\Components\FileUpload::make('cv_url')
+                    ->label('CV / Resume (PDF)')
+                    ->acceptedFileTypes(['application/pdf'])
+                    ->disk('public')
+                    ->directory('cv')
+                    ->downloadable()
+                    ->openable()
+                    ->helperText('Upload your CV/Resume PDF. This will be dynamically linked on the portfolio website.'),
             ]);
     }
 
@@ -53,8 +63,14 @@ class AboutMeResource extends Resource
                 Tables\Columns\TextColumn::make('role')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('line_1')
-                    ->searchable(),
-                Tables\Columns\ImageColumn::make('image_url'),
+                    ->searchable()
+                    ->limit(40),
+                Tables\Columns\ImageColumn::make('image_url')
+                    ->label('Profile Image'),
+                Tables\Columns\IconColumn::make('cv_url')
+                    ->label('CV Uploaded')
+                    ->boolean()
+                    ->getStateUsing(fn ($record) => !empty($record->cv_url)),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

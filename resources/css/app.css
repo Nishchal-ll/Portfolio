@@ -5,11 +5,11 @@
 @source '../../storage/framework/views/*.php';
 
 :root {
-    --bg: #f8fafc;
+    --bg: #fafafa;
     --bg-alt: #ffffff;
     --surface: #ffffff;
-    --surface-2: #f1f5f9;
-    --surface-3: #e2e8f0;
+    --surface-2: #f8fafc;
+    --surface-3: #f1f5f9;
     --border: #e2e8f0;
     --border-bright: #cbd5e1;
     --fg: #0f172a;
@@ -54,7 +54,7 @@ button:focus, button:focus-visible, .nav-btn:focus, .nav-btn:focus-visible, .fil
     box-shadow: none;
 }
 
-/* Accent & Golang classes explicitly declared */
+/* Accent & Golang classes */
 .text-accent {
     color: var(--accent) !important;
 }
@@ -128,14 +128,6 @@ button:focus, button:focus-visible, .nav-btn:focus, .nav-btn:focus-visible, .fil
     z-index: 1;
 }
 
-/* Floating backdrop container */
-.floating-container {
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: 2;
-}
-
 /* Nav active class */
 .nav-active {
     color: var(--accent) !important;
@@ -150,4 +142,3 @@ button:focus, button:focus-visible, .nav-btn:focus, .nav-btn:focus-visible, .fil
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
-

@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\AboutMe;
 use App\Models\ContactInfo;
+use App\Models\Experience;
 use App\Models\Project;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class PortfolioController extends Controller
 {
@@ -14,14 +16,161 @@ class PortfolioController extends Controller
         $contactInfo = ContactInfo::first();
         $aboutMe = AboutMe::first();
         $appName = config('app.name');
-        
+            
+            $rawUrl = config('app.url');
+            if (!$rawUrl || str_contains($rawUrl, 'localhost') || str_contains($rawUrl, '127.0.0.1')) {
+                $appUrl = 'https://acharyanishchal.com.np';
+            } else {
+                $appUrl = rtrim($rawUrl, '/');
+            }
+            $canonicalUrl = 'https://acharyanishchal.com.np/';
+
+            $formattedName = preg_replace('/(?<!^)(?=[A-Z])/', ' ', $appName);
+            if (!$formattedName || $formattedName === 'Laravel') {
+                $formattedName = 'Nishchal Acharya';
+            }
+
+            $socialLinks = [];
+            if ($contactInfo) {
+                if ($contactInfo->github_url) {
+                    $socialLinks[] = (object)[
+                        'platform' => 'github',
+                        'url' => $contactInfo->github_url
+                    ];
+                }
+                if ($contactInfo->instagram_url) {
+                    $socialLinks[] = (object)[
+                        'platform' => 'instagram',
+                        'url' => $contactInfo->instagram_url
+                    ];
+                }
+                if ($contactInfo->linkedin_url) {
+                    $socialLinks[] = (object)[
+                        'platform' => 'linkedin',
+                        'url' => $contactInfo->linkedin_url
+                    ];
+                }
+                if ($contactInfo->twitter_url) {
+                    $socialLinks[] = (object)[
+                        'platform' => 'twitter',
+                        'url' => $contactInfo->twitter_url
+                    ];
+                }
+            }
+
+            $schema = [
+                '@context' => 'https://schema.org',
+                '@graph' => [
+                    [
+                        '@type' => 'Person',
+                        '@id' => $appUrl . '/#person',
+                        'name' => $formattedName,
+                        'url' => $appUrl,
+                        'image' => $appUrl . '/me1.webp',
+                        'jobTitle' => 'Golang Developer | Software Developer',
+                        'knowsAbout' => ['Golang', 'Go', 'Software Development', 'Laravel', 'PHP', 'React', 'Next.js', 'Python', 'Docker', 'Kubernetes', 'Azure', 'CI/CD', 'Web Development', 'Software Engineering'],
+                        'sameAs' => [
+                            'https://github.com/Nishchal-ll',
+                            'https://www.linkedin.com/in/nishchalacharyaaa/',
+                            'https://instagram.com/nishchal._.l'
+                        ]
+                    ],
+                    [
+                        '@type' => 'WebSite',
+                        '@id' => $appUrl . '/#website',
+                        'url' => $appUrl,
+                        'name' => $formattedName . ' Portfolio',
+                        'description' => 'Personal Portfolio of ' . $formattedName . ', Golang Developer | Software Developer.',
+                        'publisher' => [
+                            '@id' => $appUrl . '/#person'
+                        ]
+                    ]
+                ]
+            ];
+
+            $projects = Project::orderBy('order', 'asc')
+                ->orderBy('created_at', 'desc')
+                ->get()
+                ->map(function ($project) {
+                    $techBadges = [];
+                    if (is_array($project->technologies)) {
+                        foreach ($project->technologies as $tech) {
+                            $techBadges[] = $this->getTechBadgeInfo($tech);
+                        }
+                    }
+                    $project->tech_badges = $techBadges;
+
+                    // Handle rich description or plain text
+                    $desc = $project->description ?? '';
+                    $project->formatted_description = preg_replace_callback(
+                        '/\b(Go\s*\(Golang\)|Golang|Go)\b(?![^<]*>)/i',
+                        fn($m) => '<span class="font-bold text-[#007D9C]">' . $m[0] . '</span>',
+                        $desc
+                    );
+
+                    return $project;
+                });
+
+            $experiences = Experience::orderBy('order', 'asc')
+                ->orderBy('start_date', 'desc')
+                ->get()
+                ->map(function ($experience) {
+                    $techBadges = [];
+                    if (is_array($experience->technologies)) {
+                        foreach ($experience->technologies as $tech) {
+                            $techBadges[] = $this->getTechBadgeInfo($tech);
+                        }
+                    }
+                    $experience->tech_badges = $techBadges;
+
+                    $desc = e($experience->description ?? '');
+                    $experience->formatted_description = preg_replace_callback(
+                        '/\b(Go\s*\(Golang\)|Golang|Go)\b/i',
+                        fn($m) => '<span class="font-bold text-[#007D9C]">' . $m[0] . '</span>',
+                        $desc
+                    );
+
+                    return $experience;
+                });
+
+            $rawLine1 = $aboutMe?->line_1 ?? 'Crafting modern web applications using Golang, Laravel and React.';
+            $highlightedLine1 = preg_replace_callback(
+                '/\b(Golang|Go)\b/i',
+                fn($m) => '<span class="text-accent font-extrabold text-[1.2em] tracking-tight">' . e($m[0]) . '</span>',
+                e($rawLine1)
+            );
+
+            $cvUrl = $aboutMe?->cv_file_url ?? '/cv.pdf';
+
+        return view('welcome', [
+            'aboutMe' => $aboutMe,
+            'socialLinks' => $socialLinks,
+            'contactInfo' => $contactInfo,
+            'projects' => $projects,
+            'experiences' => $experiences,
+            'formattedName' => $formattedName,
+            'appUrl' => $appUrl,
+            'canonicalUrl' => $canonicalUrl,
+            'schema' => $schema,
+            'highlightedLine1' => $highlightedLine1,
+            'cvUrl' => $cvUrl,
+        ]);
+    }
+
+    public function showProject(string $slug)
+    {
+        $project = Project::where('slug', $slug)->firstOrFail();
+        $contactInfo = ContactInfo::first();
+        $aboutMe = AboutMe::first();
+        $appName = config('app.name');
+
         $rawUrl = config('app.url');
         if (!$rawUrl || str_contains($rawUrl, 'localhost') || str_contains($rawUrl, '127.0.0.1')) {
             $appUrl = 'https://acharyanishchal.com.np';
         } else {
             $appUrl = rtrim($rawUrl, '/');
         }
-        $canonicalUrl = 'https://acharyanishchal.com.np/';
+        $canonicalUrl = 'https://acharyanishchal.com.np/projects/' . $project->slug;
 
         $formattedName = preg_replace('/(?<!^)(?=[A-Z])/', ' ', $appName);
         if (!$formattedName || $formattedName === 'Laravel') {
@@ -56,76 +205,70 @@ class PortfolioController extends Controller
             }
         }
 
-        $schema = [
-            '@context' => 'https://schema.org',
-            '@graph' => [
-                [
-                    '@type' => 'Person',
-                    '@id' => $appUrl . '/#person',
-                    'name' => $formattedName,
-                    'url' => $appUrl,
-                    'image' => $appUrl . '/me1.webp',
-                    'jobTitle' => 'Golang Developer | Software Developer',
-                    'knowsAbout' => ['Golang', 'Go', 'Software Development', 'Laravel', 'PHP', 'React', 'Next.js', 'Python', 'Docker', 'Kubernetes', 'Azure', 'CI/CD', 'Web Development', 'Software Engineering'],
-                    'sameAs' => [
-                        'https://github.com/Nishchal-ll',
-                        'https://www.linkedin.com/in/nishchalacharyaaa/',
-                        'https://instagram.com/nishchal._.l'
-                    ]
-                ],
-                [
-                    '@type' => 'WebSite',
-                    '@id' => $appUrl . '/#website',
-                    'url' => $appUrl,
-                    'name' => $formattedName . ' Portfolio',
-                    'description' => 'Personal Portfolio of ' . $formattedName . ', Golang Developer | Software Developer.',
-                    'publisher' => [
-                        '@id' => $appUrl . '/#person'
-                    ]
-                ]
-            ]
-        ];
+        $techBadges = [];
+        if (is_array($project->technologies)) {
+            foreach ($project->technologies as $tech) {
+                $techBadges[] = $this->getTechBadgeInfo($tech);
+            }
+        }
+        $project->tech_badges = $techBadges;
 
-        $projects = Project::orderBy('order', 'asc')
-            ->orderBy('created_at', 'desc')
+        $desc = $project->description ?? '';
+        $project->formatted_description = preg_replace_callback(
+            '/\b(Go\s*\(Golang\)|Golang|Go)\b(?![^<]*>)/i',
+            fn($m) => '<span class="font-bold text-[#007D9C]">' . $m[0] . '</span>',
+            $desc
+        );
+
+        $allProjects = Project::orderBy('order', 'asc')->orderBy('created_at', 'desc')->get();
+        $currentIndex = $allProjects->search(fn($p) => $p->id === $project->id);
+        $previousProject = ($currentIndex > 0) ? $allProjects->get($currentIndex - 1) : null;
+        $nextProject = ($currentIndex !== false && $currentIndex < $allProjects->count() - 1) ? $allProjects->get($currentIndex + 1) : null;
+
+        $otherProjects = Project::where('id', '!=', $project->id)
+            ->orderBy('order', 'asc')
+            ->take(3)
             ->get()
-            ->map(function ($project) {
+            ->map(function ($p) {
                 $techBadges = [];
-                if (is_array($project->technologies)) {
-                    foreach ($project->technologies as $tech) {
+                if (is_array($p->technologies)) {
+                    foreach ($p->technologies as $tech) {
                         $techBadges[] = $this->getTechBadgeInfo($tech);
                     }
                 }
-                $project->tech_badges = $techBadges;
-
-                // Highlight Go / Golang in description
-                $desc = e($project->description);
-                $project->formatted_description = preg_replace_callback(
-                    '/\b(Go\s*\(Golang\)|Golang|Go)\b/i',
-                    fn($m) => '<span class="font-bold text-[#007D9C]">' . $m[0] . '</span>',
-                    $desc
-                );
-
-                return $project;
+                $p->tech_badges = $techBadges;
+                return $p;
             });
 
-        $rawLine1 = $aboutMe?->line_1 ?? 'Crafting modern web applications using Golang, Laravel and React.';
-        $highlightedLine1 = preg_replace_callback(
-            '/\b(Golang|Go)\b/i',
-            fn($m) => '<span class="text-accent font-extrabold text-[1.2em] tracking-tight">' . e($m[0]) . '</span>',
-            e($rawLine1)
-        );
+        $cvUrl = $aboutMe?->cv_file_url ?? '/cv.pdf';
 
-        return view('welcome', [
-            'aboutMe' => $aboutMe,
-            'socialLinks' => $socialLinks,
+        $schema = [
+            '@context' => 'https://schema.org',
+            '@type' => 'SoftwareSourceCode',
+            'name' => $project->title,
+            'description' => $project->description,
+            'author' => [
+                '@type' => 'Person',
+                'name' => $formattedName,
+                'url' => $appUrl
+            ],
+            'programmingLanguage' => $project->technologies ?? [],
+            'codeRepository' => $project->github_link ?? $appUrl,
+            'url' => $canonicalUrl
+        ];
+
+        return view('projects.show', [
+            'project' => $project,
+            'otherProjects' => $otherProjects,
+            'previousProject' => $previousProject,
+            'nextProject' => $nextProject,
             'contactInfo' => $contactInfo,
-            'projects' => $projects,
+            'socialLinks' => $socialLinks,
             'formattedName' => $formattedName,
             'appUrl' => $appUrl,
             'canonicalUrl' => $canonicalUrl,
+            'cvUrl' => $cvUrl,
             'schema' => $schema,
-            'highlightedLine1' => $highlightedLine1,
         ]);
     }
 
