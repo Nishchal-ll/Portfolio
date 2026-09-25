@@ -65,8 +65,8 @@ class PortfolioController extends Controller
                     'name' => $formattedName,
                     'url' => $appUrl,
                     'image' => $appUrl . '/me1.webp',
-                    'jobTitle' => 'Golang Developer & Software Engineer',
-                    'knowsAbout' => ['Golang', 'Go', 'Laravel', 'PHP', 'React', 'Next.js', 'Python', 'Docker', 'Kubernetes', 'Azure', 'CI/CD', 'Web Development', 'Software Engineering'],
+                    'jobTitle' => 'Golang Developer | Software Developer',
+                    'knowsAbout' => ['Golang', 'Go', 'Software Development', 'Laravel', 'PHP', 'React', 'Next.js', 'Python', 'Docker', 'Kubernetes', 'Azure', 'CI/CD', 'Web Development', 'Software Engineering'],
                     'sameAs' => [
                         'https://github.com/Nishchal-ll',
                         'https://www.linkedin.com/in/nishchalacharyaaa/',
@@ -78,7 +78,7 @@ class PortfolioController extends Controller
                     '@id' => $appUrl . '/#website',
                     'url' => $appUrl,
                     'name' => $formattedName . ' Portfolio',
-                    'description' => 'Personal Portfolio of ' . $formattedName . ', Golang Developer & Software Engineer.',
+                    'description' => 'Personal Portfolio of ' . $formattedName . ', Golang Developer | Software Developer.',
                     'publisher' => [
                         '@id' => $appUrl . '/#person'
                     ]

@@ -5,9 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>{{ $formattedName }} - Golang Developer &amp; Software Engineer</title>
-    <meta name="description" content="Explore the portfolio of {{ $formattedName }}, a Golang Developer and Software Engineer specializing in building scalable backend systems, high-performance microservices, Go, Laravel, and React.">
-    <meta name="keywords" content="{{ $formattedName }}, Nishchal, Acharya, Golang Developer, Go Developer, Software Engineer, Backend Developer, Web Developer, Laravel, Go, React, Portfolio, Nepal, Nishchal-ll">
+    <title>{{ $formattedName }} - Golang Developer | Software Developer</title>
+    <meta name="description" content="Personal portfolio of {{ $formattedName }}, a Golang Developer and Software Developer specializing in crafting high-performance backend systems, Go microservices, Laravel, and modern web applications.">
+    <meta name="keywords" content="{{ $formattedName }}, Nishchal, Acharya, Golang Developer, Go Developer, Software Developer, Software Engineer, Backend Developer, Web Developer, Laravel, Go, React, Portfolio, Nepal, Nishchal-ll">
     <meta name="author" content="{{ $formattedName }}">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <link rel="canonical" href="{{ $canonicalUrl }}">
@@ -15,15 +15,15 @@
     <!-- Open Graph / Facebook / LinkedIn / Discord -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ $canonicalUrl }}">
-    <meta property="og:title" content="{{ $formattedName }} - Golang Developer &amp; Software Engineer">
-    <meta property="og:description" content="Explore the portfolio of {{ $formattedName }}, a Golang Developer and Software Engineer specializing in building scalable backend systems, high-performance microservices, Go, Laravel, and React.">
+    <meta property="og:title" content="{{ $formattedName }} - Golang Developer | Software Developer">
+    <meta property="og:description" content="Personal portfolio of {{ $formattedName }}, a Golang Developer and Software Developer specializing in crafting high-performance backend systems, Go microservices, Laravel, and modern web applications.">
     <meta property="og:image" content="{{ $appUrl }}/me1.webp">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:url" content="{{ $canonicalUrl }}">
-    <meta name="twitter:title" content="{{ $formattedName }} - Golang Developer &amp; Software Engineer">
-    <meta name="twitter:description" content="Explore the portfolio of {{ $formattedName }}, a Golang Developer and Software Engineer specializing in building scalable backend systems, high-performance microservices, Go, Laravel, and React.">
+    <meta name="twitter:title" content="{{ $formattedName }} - Golang Developer | Software Developer">
+    <meta name="twitter:description" content="Personal portfolio of {{ $formattedName }}, a Golang Developer and Software Developer specializing in crafting high-performance backend systems, Go microservices, Laravel, and modern web applications.">
     <meta name="twitter:image" content="{{ $appUrl }}/me1.webp">
 
     <!-- JSON-LD Structured Data Schema Markup -->
@@ -228,7 +228,7 @@
 
                             <h1 class="text-2xl font-bold leading-tight text-slate-900 sm:text-3xl md:text-4xl">
                                 <span class="text-accent">export</span> ROLE=<br />
-                                <span>"{{ $aboutMe->role ?? 'Full Stack Developer' }}"</span>
+                                <span>"{{ $aboutMe->role ?? 'Golang Developer & Software Engineer' }}"</span>
                             </h1>
 
                             <div class="space-y-2 border-l-2 border-slate-300 pl-3 text-xs leading-relaxed text-slate-600 sm:text-sm">
